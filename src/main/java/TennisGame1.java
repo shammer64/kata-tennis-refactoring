@@ -18,15 +18,13 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
         if (scoreIsTied(m_score1, m_score2)) {
-            score = getTiedScore(m_score1);
+            return getTiedScore(m_score1);
         } else if (scoreIsLateInGame(m_score1, m_score2)) {
-            score = getLateGameScore(m_score1, m_score2);
+            return getLateGameScore(m_score1, m_score2);
         } else {
-            score = getEarlyGameScore(m_score1, m_score2);
+            return getEarlyGameScore(m_score1, m_score2);
         }
-        return score;
     }
 
     private String getTiedScore(int score1) {
