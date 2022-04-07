@@ -24,9 +24,9 @@ public class TennisGame1 implements TennisGame {
         if (scoreIsTied(m_score1, m_score2)) {
             return computeTiedScore(m_score1);
         } else if (scoreIsLateInGame(m_score1, m_score2)) {
-            return getLateGameScore(m_score1, m_score2);
+            return computeLateGameScore(m_score1, m_score2);
         } else {
-            return getEarlyGameScore(m_score1, m_score2);
+            return computeEarlyGameScore(m_score1, m_score2);
         }
     }
 
@@ -51,13 +51,13 @@ public class TennisGame1 implements TennisGame {
         put(Integer.valueOf(3), "Forty");
     }};
 
-    private String getEarlyGameScore(int score1, int score2) {
+    private String computeEarlyGameScore(int score1, int score2) {
         return EARLY_SCORE_MAP.get(Integer.valueOf(score1))
                 + "-"
                 + EARLY_SCORE_MAP.get(Integer.valueOf(score2));
     }
 
-    private String getLateGameScore(int score1, int score2) {
+    private String computeLateGameScore(int score1, int score2) {
         int scoreDiff = score1 - score2;
         String player = scoreDiff > 0 ? player1Name : player2Name;
         String result = Math.abs(scoreDiff) == 1 ? "Advantage " : "Win for ";
