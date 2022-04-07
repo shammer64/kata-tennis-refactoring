@@ -23,33 +23,9 @@ public class TennisGame1 implements TennisGame {
         if (scoreIsTied(m_score1, m_score2)) {
             score = getTiedScore(m_score1);
         } else if (scoreIsLateInGame(m_score1, m_score2)) {
-            int scoreDiff = m_score1 - m_score2;
-            if (scoreDiff == 1) score = "Advantage player1";
-            else if (scoreDiff == -1) score = "Advantage player2";
-            else if (scoreDiff >= 2) score = "Win for player1";
-            else score = "Win for player2";
+            score = getLateGameScore(m_score1, m_score2);
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = m_score1;
-                else {
-                    score += "-";
-                    tempScore = m_score2;
-                }
-                switch (tempScore) {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
-            }
+            score = getEarlyGameScore(m_score1, m_score2);
         }
         return score;
     }
@@ -71,6 +47,43 @@ public class TennisGame1 implements TennisGame {
                 break;
 
         }
+        return score;
+    }
+
+    private String getEarlyGameScore(int score1, int score2) {
+        String score = "";
+        int tempScore;
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) tempScore = score1;
+            else {
+                score += "-";
+                tempScore = score2;
+            }
+            switch (tempScore) {
+                case 0:
+                    score += "Love";
+                    break;
+                case 1:
+                    score += "Fifteen";
+                    break;
+                case 2:
+                    score += "Thirty";
+                    break;
+                case 3:
+                    score += "Forty";
+                    break;
+            }
+        }
+        return score;
+    }
+
+    private String getLateGameScore(int score1, int score2) {
+        String score;
+        int scoreDiff = score1 - score2;
+        if (scoreDiff == 1) score = "Advantage player1";
+        else if (scoreDiff == -1) score = "Advantage player2";
+        else if (scoreDiff >= 2) score = "Win for player1";
+        else score = "Win for player2";
         return score;
     }
 
