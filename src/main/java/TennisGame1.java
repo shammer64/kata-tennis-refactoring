@@ -44,6 +44,13 @@ public class TennisGame1 implements TennisGame {
             return TIE_SCORE_MAP.get(Integer.valueOf(3));
     }
 
+    private static final Map<Integer, String> EARLY_SCORE_MAP = new HashMap(){{
+        put(Integer.valueOf(0), "Love");
+        put(Integer.valueOf(1), "Fifteen");
+        put(Integer.valueOf(2), "Thirty");
+        put(Integer.valueOf(3), "Forty");
+    }};
+
     private String getEarlyGameScore(int score1, int score2) {
         String score = "";
         int tempScore;
@@ -53,20 +60,7 @@ public class TennisGame1 implements TennisGame {
                 score += "-";
                 tempScore = score2;
             }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
+            score += EARLY_SCORE_MAP.get(Integer.valueOf(tempScore));
         }
         return score;
     }
