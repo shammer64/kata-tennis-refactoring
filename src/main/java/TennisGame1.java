@@ -1,10 +1,9 @@
-
 public class TennisGame1 implements TennisGame {
-    
-    private int m_score1 = 0;
-    private int m_score2 = 0;
+
     private final String player1Name;
     private final String player2Name;
+    private int m_score1 = 0;
+    private int m_score2 = 0;
 
     public TennisGame1(String player1Name, String player2Name) {
         this.player1Name = player1Name;
@@ -20,38 +19,34 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore=0;
-        if (scoreIsTied(m_score1, m_score2))
-        {
+        int tempScore = 0;
+        if (scoreIsTied(m_score1, m_score2)) {
             score = getTiedScore(m_score1);
-        }
-        else if (scoreIsLateInGame(m_score1, m_score2))
-        {
-            int scoreDiff = m_score1-m_score2;
-            if (scoreDiff==1) score ="Advantage player1";
-            else if (scoreDiff ==-1) score ="Advantage player2";
-            else if (scoreDiff>=2) score = "Win for player1";
-            else score ="Win for player2";
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
+        } else if (scoreIsLateInGame(m_score1, m_score2)) {
+            int scoreDiff = m_score1 - m_score2;
+            if (scoreDiff == 1) score = "Advantage player1";
+            else if (scoreDiff == -1) score = "Advantage player2";
+            else if (scoreDiff >= 2) score = "Win for player1";
+            else score = "Win for player2";
+        } else {
+            for (int i = 1; i < 3; i++) {
+                if (i == 1) tempScore = m_score1;
+                else {
+                    score += "-";
+                    tempScore = m_score2;
+                }
+                switch (tempScore) {
                     case 0:
-                        score+="Love";
+                        score += "Love";
                         break;
                     case 1:
-                        score+="Fifteen";
+                        score += "Fifteen";
                         break;
                     case 2:
-                        score+="Thirty";
+                        score += "Thirty";
                         break;
                     case 3:
-                        score+="Forty";
+                        score += "Forty";
                         break;
                 }
             }
@@ -61,19 +56,18 @@ public class TennisGame1 implements TennisGame {
 
     private String getTiedScore(int score1) {
         String score;
-        switch (score1)
-        {
+        switch (score1) {
             case 0:
-                    score = "Love-All";
+                score = "Love-All";
                 break;
             case 1:
-                    score = "Fifteen-All";
+                score = "Fifteen-All";
                 break;
             case 2:
-                    score = "Thirty-All";
+                score = "Thirty-All";
                 break;
             default:
-                    score = "Deuce";
+                score = "Deuce";
                 break;
 
         }
@@ -85,7 +79,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean scoreIsLateInGame(int score1, int score2) {
-        return score1 >=4 || score2 >=4;
+        return score1 >= 4 || score2 >= 4;
     }
 
 }
