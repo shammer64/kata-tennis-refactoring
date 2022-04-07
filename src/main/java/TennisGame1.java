@@ -30,7 +30,7 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    private static final Map<Integer, String> TIE_SCORE_MAP = new HashMap(){{
+    private static final Map<Integer, String> TIE_SCORE_MAP = new HashMap<Integer, String>(){{
         put(Integer.valueOf(0), "Love-All");
         put(Integer.valueOf(1), "Fifteen-All");
         put(Integer.valueOf(2), "Thirty-All");
@@ -44,7 +44,7 @@ public class TennisGame1 implements TennisGame {
             return TIE_SCORE_MAP.get(Integer.valueOf(3));
     }
 
-    private static final Map<Integer, String> EARLY_SCORE_MAP = new HashMap(){{
+    private static final Map<Integer, String> EARLY_SCORE_MAP = new HashMap<Integer, String>(){{
         put(Integer.valueOf(0), "Love");
         put(Integer.valueOf(1), "Fifteen");
         put(Integer.valueOf(2), "Thirty");
@@ -58,13 +58,10 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getLateGameScore(int score1, int score2) {
-        String score;
         int scoreDiff = score1 - score2;
-        if (scoreDiff == 1) score = "Advantage player1";
-        else if (scoreDiff == -1) score = "Advantage player2";
-        else if (scoreDiff >= 2) score = "Win for player1";
-        else score = "Win for player2";
-        return score;
+        String player = scoreDiff > 0 ? player1Name : player2Name;
+        String result = Math.abs(scoreDiff) == 1 ? "Advantage " : "Win for ";
+        return result + player;
     }
 
     private boolean scoreIsTied(int score1, int score2) {
