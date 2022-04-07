@@ -52,17 +52,9 @@ public class TennisGame1 implements TennisGame {
     }};
 
     private String getEarlyGameScore(int score1, int score2) {
-        String score = "";
-        int tempScore;
-        for (int i = 1; i < 3; i++) {
-            if (i == 1) tempScore = score1;
-            else {
-                score += "-";
-                tempScore = score2;
-            }
-            score += EARLY_SCORE_MAP.get(Integer.valueOf(tempScore));
-        }
-        return score;
+        return EARLY_SCORE_MAP.get(Integer.valueOf(score1))
+                + "-"
+                + EARLY_SCORE_MAP.get(Integer.valueOf(score2));
     }
 
     private String getLateGameScore(int score1, int score2) {
